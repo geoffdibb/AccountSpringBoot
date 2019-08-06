@@ -4,9 +4,13 @@ import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 
 import com.BAE.domain.Account;
 import com.BAE.repository.AccountRepository;
@@ -15,14 +19,17 @@ import com.BAE.repository.AccountRepository;
 public class AccountServiceImpl implements AccountService {
 
 	private AccountRepository accountRepository;
+	private RestTemplate restTemplate;
 
 	public AccountServiceImpl() {
 
 	}
 
 	@Autowired
-	public AccountServiceImpl(AccountRepository accountRepository) {
+	public AccountServiceImpl(AccountRepository accountRepository, RestTemplate restTemplate ) {
 		this.accountRepository = accountRepository;
+		this.restTemplate = restTemplate;
+		
 	}
 
 	@Override
@@ -32,32 +39,21 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public Account createAccount(Account account) {
-		Random rand = new Random(); 
-		int numgen = rand.nextInt(3);
 
-		if(numgen== 1) {
-			int accountnumber1 = rand.nextInt(899999) + 100000;
-
-			account.setaccountNumber(accountnumber1);
+		
+			ResponseEntity<String> exchangeAccount = restTemplate.exchange("http://localhost:8081/NumberG/getNumber",
+					HttpMethod.GET, null, String.class);
 			
-			account.setprize("Little winner £50");
-
-	}
-		else if(numgen== 2){
-			int accountnumber2 = rand.nextInt(89999999) + 10000000;
-
-		account.setaccountNumber(accountnumber2);
-		account.setprize("Medium winner £100");
-
-	}
-		else {
-			int accountnumber3 = rand.nextInt(899999999) + 1000000000;
-
-		account.setaccountNumber(accountnumber3);
-		account.setprize("Big winner £500");
-
-		}
-		return accountRepository.save(account);
+			account.setaccountNumber(exchangeAccount.getBody());
+			
+			
+			ResponseEntity<String> exchangeAccount2 = restTemplate.exchange("http://localhost:8082/PrizeG/getPrize",
+					HttpMethod.GET, null, String.class);
+			
+			account.setprizewinner(exchangeAccount2.getBody());
+			
+			
+				return accountRepository.save(account);
 
 	}
 

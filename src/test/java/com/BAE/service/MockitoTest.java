@@ -21,8 +21,8 @@ public class MockitoTest {
 	@Mock
 	AccountRepository repo;
 	
-	private static final Account fakeaccount1 = new Account(1L, "Kevin", "Mcfreedom", 1);
-	private static final Account fakeaccount2 = new Account(2L, "Mike", "Chowda", 2);
+	private static final Account fakeaccount1 = new Account(1L, "Kevin", "Mcfreedom", "1", "no");
+	private static final Account fakeaccount2 = new Account(2L, "Mike", "Chowda", "2", "yes");
 	
 	@Test
 	public void findAllTest() {

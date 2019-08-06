@@ -36,6 +36,10 @@ public class AccountController {
 
 	
 	private RestTemplate restTemplate;
+//	public MicroController(@AutoWired RestTemplate rest Template) {
+//		this.restTemplate= restTemplate;
+//	}
+	
 
 	@RequestMapping("/getAllAccount")
 	public List<Account> getAllAccount() {
@@ -62,6 +66,6 @@ public class AccountController {
 		return service.updateAccount(account);
 
 	}
-
+	
 
 }
