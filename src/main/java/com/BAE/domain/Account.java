@@ -16,14 +16,19 @@ public class Account {
 	
 	private String lastName;
  
+	private int accountNumber;
+	
+	private String prize;
 	public Account() {
 
 	}
 
-	public Account(Long id, String firstName, String lastName) {
+	public Account(Long id, String firstName, String lastName, int accountNumber) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.accountNumber = accountNumber;
+		this.prize = prize;
 
 	}
 
@@ -43,6 +48,22 @@ public class Account {
 		this.lastName = lastName;
 	}
 
+	public int getaccountNumber() {
+		return accountNumber;
+	}
+
+	public void setaccountNumber(int accountnumber) {
+		this.accountNumber = accountnumber;
+	}
+	
+	public String getprize() {
+		return prize;
+	}
+
+	public void setprize(String prize) {
+		this.prize = prize;
+	}
+	
 	public Long getId() {
 		return id;
 	}

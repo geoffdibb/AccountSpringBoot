@@ -1,6 +1,7 @@
 package com.BAE.service;
 
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -31,6 +32,31 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public Account createAccount(Account account) {
+		Random rand = new Random(); 
+		int numgen = rand.nextInt(3);
+
+		if(numgen== 1) {
+			int accountnumber1 = rand.nextInt(899999) + 100000;
+
+			account.setaccountNumber(accountnumber1);
+			
+			account.setprize("Little winner £50");
+
+	}
+		else if(numgen== 2){
+			int accountnumber2 = rand.nextInt(89999999) + 10000000;
+
+		account.setaccountNumber(accountnumber2);
+		account.setprize("Medium winner £100");
+
+	}
+		else {
+			int accountnumber3 = rand.nextInt(899999999) + 1000000000;
+
+		account.setaccountNumber(accountnumber3);
+		account.setprize("Big winner £500");
+
+		}
 		return accountRepository.save(account);
 
 	}
