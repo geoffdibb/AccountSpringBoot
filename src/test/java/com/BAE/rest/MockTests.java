@@ -49,15 +49,15 @@ public class MockTests {
 		Mockito.verify(service).deleteAccount(fakeaccount1);
 	}
 	
-//	
-//	@Test
-//	public void createAccountTest() {
-//
-//		Mockito.when(service.createAccount(fakeaccount1)).thenReturn(fakeaccount1);
-//
-//		assertEquals(fakeaccount1, controller.createAccount(fakeaccount1).getBody());
-//		Mockito.verify(service).createAccount(fakeaccount1);
-//	}
+	
+	@Test
+	public void createAccountTest() {
+
+		Mockito.when(service.createAccount(fakeaccount1)).thenReturn(fakeaccount1);
+
+		assertEquals(fakeaccount1, controller.createAccount(fakeaccount1).getBody());
+		Mockito.verify(service).createAccount(fakeaccount1);
+	}
 	
 	@Test
 	public void updateAccountTest() {
