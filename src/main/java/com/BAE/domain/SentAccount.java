@@ -60,7 +60,7 @@ public class SentAccount {
     }
 
     public String getprizewinner() {
-        return accountNumber;
+        return prizewinner;
     }
 
     public void setprizewinner(String prizewinner) {
