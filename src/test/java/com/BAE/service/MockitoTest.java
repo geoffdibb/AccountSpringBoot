@@ -34,12 +34,12 @@ public class MockitoTest {
 		Mockito.verify(repo).findAll();
 	}
 	
-	@Test
-	public void createAccountTest() {
-		Mockito.when(repo.save(fakeaccount1)).thenReturn(fakeaccount1);
-		assertEquals(fakeaccount1, service.createAccount(fakeaccount1));
-		Mockito.verify(repo).save(fakeaccount1);
-	}
+//	@Test
+//	public void createAccountTest() {
+//		Mockito.when(repo.save(fakeaccount1)).thenReturn(fakeaccount1);
+//		assertEquals(fakeaccount1, service.createAccount(fakeaccount1));
+//		Mockito.verify(repo).save(fakeaccount1);
+//	}
 	
 
 }
